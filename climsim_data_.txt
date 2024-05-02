@@ -1,0 +1,111 @@
+
+
+HR -> 21 600 colums ~40 T
+LR -> 384    colums ~750G
+
+10 simulated years -> one sample every 20 minutes
+==> 10*365*72*2 = 525 600 files (4320 files/month)
+
+
+E3SM-MMF.ml'X'.'yyyy'-'mm'-'dd'-'sssss'.nc with
+	X = i or o
+	0001  <= yyyy  <= 0010
+	01    <=  mm   <= 12
+	01    <=  dd   <= 31
+	00000 <= sssss <= 86400
+	
+	
+	
+	
+For input files:
+
+	dimensions:
+		ncol = 21 600 (resp. 384) ;
+		lev = 60 ;
+	28 variables:
+		int ymd ;                       |      -|10201 <= year-month-day <= 101231 
+		int tod ;                       |      -|0 <= time of day <= 86 400
+		double cam_in_ALDIF(ncol) ;     |      -|Albedo for diffuse longwave radiation
+		double cam_in_ALDIR(ncol) ;     |      -|Albedo for direct longwave radiation
+		double cam_in_ASDIF(ncol) ;     |      -|Albedo for diffuse shortwave radiation
+		double cam_in_ASDIR(ncol) ;     |      -|Albedo for direct shortwave radiation
+		double cam_in_ICEFRAC(ncol) ;   |      -|Sea-ice area fraction
+		double cam_in_LANDFRAC(ncol) ;  |      -|Land area fraction
+		double cam_in_LWUP(ncol) ;      |   W/m²|Upward longwave flux
+		double cam_in_OCNFRAC(ncol) ;   |      -|?? Ocean area fraction ??
+		double cam_in_SNOWHICE(ncol) ;  |      m|Snow depth over ice
+		double cam_in_SNOWHLAND(ncol) ; |      m|Snow depth over land(liquid water equivalent)
+		double pbuf_COSZRS(ncol) ;      |      -|Cosine of solar zenith angle
+		double pbuf_LHFLX(ncol) ;       |   W/m²|Surface latent heat flux
+		double pbuf_SHFLX(ncol) ;       |   W/m²|Surface sensible heat flux
+		double pbuf_SOLIN(ncol) ;       |   W/m²|Solar insolation
+		double pbuf_TAUX(ncol) ;        |   W/m²|Zonal surface stress
+		double pbuf_TAUY(ncol) ;        |   W/m²|Meridional surface stress
+		double state_pmid(lev, ncol) ;  |     Pa|Mid-level pressure
+		double state_ps(ncol) ;         |     Pa|Surface pressure
+		double state_q0001(lev, ncol) ; |  kg/kg|Specific humidity
+		double state_q0002(lev, ncol) ; |  kg/kg|Cloud liquid mixing ratio
+		double state_q0003(lev, ncol) ; |  kg/kg|Cloud ice mixing ratio
+		double state_t(lev, ncol) ;     |      K|Air temperature
+		double state_u(lev, ncol) ;     |    m/s|Zonal wind speed
+		double state_v(lev, ncol) ;     |    m/s|Meridional wind speed
+		double pbuf_CH4(lev, ncol) ;    |mol/mol|Methane volume mixing ratio
+		double pbuf_N2O(lev, ncol) ;    |mol/mol|Nitrous oxide volume mixing ratio
+		double pbuf_ozone(lev, ncol) ;  |mol/mol|Ozone volume mixing ratio
+
+
+
+	 global attributes:
+		??:ne = 4 ;??
+		??:fv_nphys = 2 ;??
+		??:calendar = "NO_LEAP" ;??
+		
+
+For onput files:
+
+	dimensions:
+		ncol = 21 600 ; 384
+		lev = 60 ;
+			
+	15 variables:
+		int ymd ;                       |      -|10201 <= year-month-day <= 101231 
+		int tod ;                       |      -|0 <= time of day <= 86 400
+		double cam_out_FLWDS(ncol) ;    |   W/m²|Downward longwave flux at surface
+		double cam_out_NETSW(ncol) ;    |   W/m²|Net shortwave flux at surface
+		double cam_out_PRECC(ncol) ;    |   W/m²|Rain rate
+		double cam_out_PRECSC(ncol) ;   |   W/m²|Snow rate (liquid water equivalent)
+		double cam_out_SOLL(ncol) ;     |   W/m²|Downward near-IR direct solar flux to surface
+		double cam_out_SOLLD(ncol) ;    |   W/m²|Downward visible diffuse solar flux to surface
+		double cam_out_SOLS(ncol) ;     |   W/m²|Downward visible direct solar flux to surface
+		double cam_out_SOLSD(ncol) ;    |   W/m²|Downward visible diffuse solar flux to surface
+		double state_q0001(lev, ncol) ; |  kg/kg|Specific humidity
+		double state_q0002(lev, ncol) ; |  kg/kg|Cloud liquid mixing ratio
+		double state_q0003(lev, ncol) ; |  kg/kg|Cloud ice mixing ratio
+		double state_t(lev, ncol) ;     |      K|Air temperature
+		double state_u(lev, ncol) ;     |    m/s|Zonal wind speed
+		double state_v(lev, ncol) ;     |    m/s|Meridional wind speed
+
+
+
+	 global attributes:
+		??:ne = 4 ;??
+		??:fv_nphys = 2 ;??
+		??:calendar = "NO_LEAP" ;??
+
+
+
+
+========================PREPROCESSING======================
+
+(i)   Downsampling in time (1/7)
+(ii)  collapse horizontally location and time into a single dimension
+(iii) normalize variables , with these statistics calculated separately at each of the 60 vertical levels for the four variables with vertical dependence
+(vi)  concatenate variables into multi-variate input and output vectors for each sample
+
+
+
+
+
+
+
+

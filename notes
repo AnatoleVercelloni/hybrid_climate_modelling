@@ -19,7 +19,10 @@ large-scale fluid motions of Earth’s atmosphere
 GOAL: an ML parameterization emulator return the large-scale outputs—changes in wind, moisture, or temperature—that occur due to unresolved small-scale (sub-resolution) physics, given large-scale resolved inputs (e.g., temperature, wind velocity)
 
 
-data generated with multiscale method: deploy a smaller scale, high resolution cloud resolving simulator for each host grid column. The smaller scale simulator explicitly resolves the detailed behaviour of clouds and their turbulent motions. The time-integrated and horizontally averaged influence of the resolved convection is fed upscale to the host climate simulator, and is the target of hybrid ML-climate simulation approaches.
+data generated with multiscale method: deploy a smaller scale, high resolution cloud resolving simulator for each host grid column (CRM). The smaller scale simulator explicitly resolves the detailed behaviour of clouds and their turbulent motions. The time-integrated and horizontally averaged influence of the resolved convection is fed upscale to the host climate simulator, and is the target of hybrid ML-climate simulation approaches.
+ClimSim utilize a 2D CRM with 64 columns and 2 km horizontal grid spacing within each grid cell.
+
+--> 60 levels
 
 		Dataset:
 		
@@ -68,6 +71,22 @@ Preprocessing:
 -> each sample has 60 levels (vertical)
 
 
+
+
+
+######################
+## JEANZAY    IDRIS ##
+######################
+#SBATCH --job-name=test
+#SBATCH --output=TEST_Script_Output_ico
+#SBATCH --error=TEST_Script_Output_ico
+#SBATCH --nodes=1
+#SBATCH --ntasks=10
+#SBATCH --ntasks-per-node=10
+#SBATCH --hint=nomultithread
+#SBATCH --time=02:00:00
+#SBATCH --qos=qos_cpu-dev
+#SBATCH --account psl@cpu
 
 
 
