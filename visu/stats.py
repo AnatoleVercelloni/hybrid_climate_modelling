@@ -69,53 +69,97 @@ def npy_toxarray(file, grid_b):
 
     data = np.load(file)
 
-    T = data.shape[0]%384
 
-    ptend_t = data[:,:60].reshape((1,60,384))
-    ptend_q0001 = data[:,60:120].reshape((1,60,384))
-    cam_out_NETSW
-    cam_out_FLWDS
-    cam_out_PRECSC
-    cam_out_PRECC
-    cam_out_SOLS
-    cam_out_SOLL
-    cam_out_SOLSD
-    cam_out_SOLLD
+    grid = psyplot.open_dataset(grid_b)
 
-    print(t.shape)
+ 
+    ncol = len(grid['ncol'])
+    T = data.shape[0]//ncol
+    print(T)
+    lev = len(grid['lev'])
+    nvertex = len(grid['nvertex'])
+
+    data = data[:T*ncol]
+
+    area_ = np.array(grid['area'])
+    lon_ = np.array(grid['lon'])
+    lat_ = np.array(grid['lat'])
+    bounds_lon_ = np.array(grid['bounds_lon'])
+    bounds_lat_ = np.array(grid['bounds_lat'])
+
+    ptend_t = data[:,:60].reshape((T,lev, ncol))
+    ptend_q0001 = data[:,60:120].reshape((T, lev, ncol))
+    cam_out_NETSW = data[:,120:121].reshape((T, ncol))
+    cam_out_FLWDS = data[:,121:122].reshape((T, ncol))
+    cam_out_PRECSC = data[:,122:123].reshape((T, ncol))
+    cam_out_PRECC = data[:,123:124].reshape((T, ncol))
+    cam_out_SOLS = data[:,124:125].reshape((T, ncol))
+    cam_out_SOLL = data[:,125:126].reshape((T, ncol))
+    cam_out_SOLSD = data[:,126:127].reshape((T, ncol))
+    cam_out_SOLLD = data[:,127:128].reshape((T, ncol))
+
+    # print(t.shape)
 
 
-#     ds = xr.Dataset(
+    ds = xr.Dataset(
 
-#     data_vars={
+    data_vars=dict(
 
-#         'ptend_t': ('time_counter' , 'lev' , 'ncol'), data[]
+        # test=(['lev' , 'ncol', 'nvertex'], np.zeros((lev, ncol, nvertex))),
+        ptend_t=(['time_counter', 'lev' , 'ncol'], ptend_t),
+        # area=(['ncol'], area_),
+        ptend_q0001=(['time_counter', 'lev' , 'ncol'], ptend_q0001),
+        cam_out_NETSW=(['time_counter', 'ncol'], cam_out_NETSW),
+        cam_out_FLWDS=(['time_counter', 'ncol'], cam_out_FLWDS),
+        cam_out_PRECSC=(['time_counter', 'ncol'], cam_out_PRECSC),
+        cam_out_PRECC=(['time_counter', 'ncol'], cam_out_PRECC),
+        cam_out_SOLS=(['time_counter', 'ncol'], cam_out_SOLS),
+        cam_out_SOLL=(['time_counter', 'ncol'], cam_out_SOLL),
+        cam_out_SOLSD=(['time_counter', 'ncol'], cam_out_SOLSD),
+        cam_out_SOLLD=(['time_counter', 'ncol'], cam_out_SOLLD),
+
     
-#     },
+    ),
 
-#     coords=dict(
+    coords=dict(
 
-#         lon=("loc", lon),
-
-#         lat=("loc", lat),
-
-#         instrument=instruments,
-
-#         time=time,
-
-#         reference_time=reference_time,
-
-#     ),
-
-#     attrs=dict(description="Weather related data."),
-
-# )
-    pred = xr.DataArray(data)
+        lev=("lev", np.arange(0, 60, dtype=float)),
+        # lat=("ncol", lat_), 
+        # lon=("ncol", lon_),
+        bounds_lat = (("ncol", "nvertex") , bounds_lat_),
+        bounds_lon = (("ncol", "nvertex"), bounds_lon_),
+        time_counter=("time_counter", range(T)),
+        ncol=("ncol", range(ncol))
+        
 
 
-    # pred_ = pred.to_dataset(dim = 'dim_1')
-    # pred_.chunk({'dim_1' : 64, 'dim_1': 64})
-    # pred = pred_.rename_dims({'dim_0': 'ncol'})
 
-    return pred
+    )
+
+    )
+    
+
+    
+
+    for var in ds.variables:
+        if str(var) == 'area': continue
+        if str(var) == 'ncol': continue 
+        if str(var) == 'lat' : ds[str(var)].attrs = {"coordinates": "bounds_lat"}
+        elif str(var) == 'lon': ds[str(var)].attrs = {"coordinates": "bounds_lon"}
+        elif (ds[str(var)].shape) == (ncol, ):
+            print(str(var), ds[str(var)].shape)
+            print(ds[str(var)].attrs)
+            ds[str(var)].attrs = {"coordinates": "lon lat"}
+            print(ds[str(var)].attrs)
+        elif (ds[str(var)].shape) == (ncol, nvertex) : ds[str(var)].attrs = {"coordinates": "lon lat"}
+        elif (ds[str(var)].shape) == (T, ncol) : ds[str(var)].attrs = {"coordinates": "time_centered lon lat"}
+        elif (ds[str(var)].shape) == (T, lev, ncol) : ds[str(var)].attrs = {"coordinates": "time_centered lev lon lat"}
+
+
+    # print('area coord ', ds['area'].attrs) 
+
+    ds = xr.merge([grid, ds])
+
+    return ds
+
 
