@@ -1,12 +1,12 @@
 from stats import *
 import psyplot.project as psy
-from tonetcdf import create_grid_info
+from create_boundaries import create_grid_info
 
 reso = "low"
 
 data_path = "/gpfsdswork/dataset/ClimSim_low-res/train/"
 filelist = [data_path + '0008-02/E3SM-MMF.mli.0008-02-**-00000.nc']
-grid_info = 'scvt/ClimSim_low-res_grid-info.nc'
+grid_info = '/gpfswork/rech/psl/upu87pm/ClimSim/grid_info/ClimSim_low-res_grid-info.nc'
 
 grid_b = '../data/nc_data/grid_with_boundaries_'+reso + 'res.nc'
 nc_file = 'test.nc'

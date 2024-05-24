@@ -13,6 +13,10 @@ def read_grid_info(filename, verbose = True):
     lon = nc.variables['lon'][:]
     P0 = nc.variables['P0'][:]
     area = nc.variables['area'][:]
+    hyai = nc.variables['hyai'][:]
+    hyam = nc.variables['hyam'][:]
+    hybi = nc.variables['hybi'][:]
+    hybm = nc.variables['hybm'][:]
 
     #bounds_lat = nc.variables['bounds_lat'][:]
     nvertex = 10
@@ -25,7 +29,7 @@ def read_grid_info(filename, verbose = True):
 
     print("read grid info from netcedf file ok !")
 
-    return ncel, POLY, nvertex, lon, lat, P0, area
+    return ncel, POLY, nvertex, lon, lat, P0, area, hyai, hyam, hybi, hybm 
 
 def read_variable(filename, variable):
 
@@ -45,7 +49,7 @@ def read_variable(filename, variable):
 def create_grid_info(filename, grid_info, verbose=True):
 
 
-    ncel, POLY, nvertex, lon_, lat_, P0_, area_ = read_grid_info(grid_info, verbose)
+    ncel, POLY, nvertex, lon_, lat_, P0_, area_, hyai_, hyam_, hybi_, hybm_ = read_grid_info(grid_info, verbose)
 
     # print(lat_)
 
@@ -65,10 +69,10 @@ def create_grid_info(filename, grid_info, verbose=True):
 	
     P0 = rootgrp.createVariable("P0","f8",())
     area = rootgrp.createVariable("area","f8",("ncol",))
-    # hyai = rootgrp.createVariable("hyai","f8",("ilev",))
-    # hyam = rootgrp.createVariable("hyam","f8",("lev",))
-    # hybi = rootgrp.createVariable("hybi","f8",("ilev",))
-    # hybm = rootgrp.createVariable("hybm","f8",("lev",))
+    hyai = rootgrp.createVariable("hyai","f8",("ilev",))
+    hyam = rootgrp.createVariable("hyam","f8",("lev",))
+    hybi = rootgrp.createVariable("hybi","f8",("ilev",))
+    hybm = rootgrp.createVariable("hybm","f8",("lev",))
     lat = rootgrp.createVariable("lat","f8",("ncol",))
     lon = rootgrp.createVariable("lon","f8",("ncol",))
     lev = rootgrp.createVariable("lev", "f8", ("lev",))

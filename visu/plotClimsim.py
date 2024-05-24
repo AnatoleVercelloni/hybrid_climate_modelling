@@ -45,16 +45,10 @@ def get_xyz(filename, Ai=False):
 
 
 def centroid(D, points, v, simplicies):
+
     if v not in D: return []
     poly = list(D[v])
-    """poly = []
-    for triangle in simplicies:
-            if v in triangle:
-                 i = triangle.index(v)
-                 t = (triangle[i], triangle[i-1], triangle[i-2])  #put v in first position
-                 poly.append(t)"""
-    #if v == 27 or v==44 or v==31 or v == 30:print("wrong poly", poly, v)            
-
+  
     v_ = points[v]
     BARY = []
     a = v
@@ -63,8 +57,6 @@ def centroid(D, points, v, simplicies):
     tmp = []
     #print("POLY", poly)
     for (b, c) in poly: #compute the barycentre for each triangle 
-        
-
 
         if a != v: print ("erreur, sorted method failed !")
 
@@ -73,12 +65,6 @@ def centroid(D, points, v, simplicies):
         nb = points[b]
         nc = points[c]
            
-        """p = na + nb + nc
-        ab = np.dot(na,nb)
-        bc = np.dot(nb,nc)
-        ca = np.dot(na,nc)
-
-        bary = p/np.sqrt(3 + 2*ab + 2*bc + 2*ca)"""
 
         ac = na - nc
         bc = nb - nc
@@ -92,28 +78,6 @@ def centroid(D, points, v, simplicies):
         tmp.append((b,c, bary))
 
 
-        """if len(Ls)==0:
-            Ls.append((b,c, bary))
-            tmp.pop(0)
-            #tmp = []
-        n = len(tmp)
-        i = n -1
-        while i>=0:
-            #print(tmp, i, tmp[i])
-            if Ls[-1][0] == tmp[i][0]:
-                #print(i)
-                #print(tmp)
-                Ls.append((tmp[i][1],tmp[i][0],tmp[i][2]))
-                tmp.pop(i)
-                #print(tmp)
-            elif Ls[-1][0] == tmp[i][1]:
-                 Ls.append(tmp[i])
-                 tmp.pop(i)
-            i = i-1"""
-        
-
-
-
         #print("bary", bary)
             
         if np.abs(bary[0]**2 + bary[1]**2 + bary[2]**2 - 1) > 0.001: print("bary not on the sphere !")
@@ -124,13 +88,7 @@ def centroid(D, points, v, simplicies):
             
         cangle = math.acos((np.dot(v1,  v2)/np.linalg.norm(v1)*np.linalg.norm(v2)))
         sign = np.sign(np.dot(v_,np.cross(v1, v2)))
-        """if sign == 0: 
-            print("SIGNE ZERO")
-            if len(BARY) != 0:
-                sign = BARY[-1][1]
-            else:
-                sign = 1"""
-
+ 
         if sign >= 0:
             angle = cangle
         else:
@@ -142,41 +100,7 @@ def centroid(D, points, v, simplicies):
     BARY.sort(key = lambda x: x[1])   #sort the barycenters accordind to the angle 
     i = 0
     n = len(Ls)
-    """while(n<10):
-            Ls.append(Ls[i]) 
-            n = n+1
-            i = i +1"""
-
-    
-   
-    """Ls.append(tmp[0])
-    tmp.pop(0)
-    print("NEW TRI ")
-    while len(tmp)>0:
-        i = 0
-        for k in range(len(tmp)):
-            print(i, tmp)
-            if Ls[-1][0] == tmp[i][0]:
-                #print(i)
-                #print(tmp)
-                Ls.append((tmp[i][1],tmp[i][0],tmp[i][2]))
-                tmp.pop(i)
-                i = i-1
-                #print(tmp)
-            elif Ls[-1][0] == tmp[i][1]:
-                 Ls.append(tmp[i])
-                 tmp.pop(i)
-                 i = i-1
-            i = i+1"""
-                 
-   
-            
-
-
-
-    #if len(Ls) != len(poly): print("PROBLEEEEM !", len(poly), len(Ls), len(tmp))
-    #return [Ls[i][2] for i in range(n)]
-    #print("BARRYYYYY", [BARY[i][0] for i in range(len(poly))])
+ 
     return [BARY[i][0] for i in range(len(poly))]
 
 
@@ -197,6 +121,7 @@ def polygones (simplicies, D, points, nvertex, verbose=True):
 
 
 def check_sphere(POLY):
+    #check that all the verticies in POLY are on the sphere
     ok = 0
     for poly in POLY:
         for bary in poly:
@@ -208,6 +133,7 @@ def check_sphere(POLY):
 
 
 def mesh(filename, nvertex, verbose=True):
+    #construct the set of polygones reprensenting the mesh
     points = get_xyz(filename)
     print("xyz coordinates from netcdf file ok")
     simplicies, D = delaunay(points)
@@ -228,6 +154,7 @@ def mesh(filename, nvertex, verbose=True):
 
 
 def matplotlib_plot(POLY, C = ['b','g','r','c','m','y'], test = []):
+    #a naive visualization implementation
     if test == []: test = POLY
     fig = plt.figure()
     ax = Axes3D(fig, auto_add_to_figure=False)
@@ -245,6 +172,7 @@ def matplotlib_plot(POLY, C = ['b','g','r','c','m','y'], test = []):
     plt.show()
 
 def plot_triangulation(points, simplices):  
+    # to vizualize the triangulation
     fig = plt.figure()
     ax = Axes3D(fig, auto_add_to_figure=False)
     fig.add_axes(ax)
@@ -271,9 +199,10 @@ def plot_triangulation(points, simplices):
     plt.show()
 
 
+
 def format_(POLY):
-
-
+    #take as input a list of x,y,z coordinate verticies and
+    #return two list of lon (resp. lat) coordinates verticies for visu
     bounds_lat = []
     bounds_lon = []
 
