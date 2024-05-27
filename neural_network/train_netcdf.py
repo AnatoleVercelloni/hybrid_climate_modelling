@@ -9,6 +9,8 @@ import xarray as xr
 import glob
 import random
 from pathlib import Path
+from datetime import datetime
+from packaging import version
 
 
 
@@ -33,7 +35,7 @@ vars_mli = ['state_t','state_q0001','state_ps','pbuf_SOLIN', 'pbuf_LHFLX', 'pbuf
 vars_mlo = ['ptend_t','ptend_q0001','cam_out_NETSW','cam_out_FLWDS','cam_out_PRECSC',
                 'cam_out_PRECC','cam_out_SOLS','cam_out_SOLL','cam_out_SOLSD','cam_out_SOLLD']
 
-fn_retrained_best = f'best.h5'
+fn_retrained_best = f'test_best.h5'
 
 stride_sample = 7 # prime number to sample all 'tod'
 f_mli1 = glob.glob(data_path + '000[1234567]-*/E3SM-MMF.mli.*-*-*-*.nc')
@@ -192,12 +194,18 @@ def train():
 
     earlystop = keras.callbacks.EarlyStopping('val_loss', patience=8)
 
+    logs = "logs/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+
+    tboard_callback = tf.keras.callbacks.TensorBoard(log_dir = logs,
+                                                 histogram_freq = 1,
+                                                 profile_batch = '500,520')
+
     history = model.fit(tds,
                     epochs=num_epochs,
                     batch_size=batch_size,
                     validation_data=tds_val,                   
                     verbose=1,
-                    callbacks=[checkpoint_best, earlystop]
+                    callbacks=[checkpoint_best, earlystop, tboard_callback]
     )
 
 
