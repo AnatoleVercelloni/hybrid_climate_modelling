@@ -1,0 +1,44 @@
+Loading tensorflow-gpu/py3/2.6.0
+  Loading requirement: gcc/8.5.0 cuda/11.2 nccl/2.8.3-1-cuda cudnn/8.1.1.33-cuda
+    openmpi/4.1.1-cuda
++ unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY
++ srun python3 -u training.py
+loading data..
+2024-06-12 18:06:29.249580: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-12 18:06:30.403546: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1510] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30990 MB memory:  -> device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:1a:00.0, compute capability: 7.0
+training set loaded
+validation set loaded
+Epoch 1/8
+2024-06-12 18:06:33.354881: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+3285/3285 - 4366s - loss: 0.0050 - mse: 0.0050 - mae: 0.0287 - accuracy: 0.9669 - val_loss: 0.0042 - val_mse: 0.0042 - val_mae: 0.0251 - val_accuracy: 0.9758
+
+Epoch 00001: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_1.h5
+Epoch 2/8
+3285/3285 - 3953s - loss: 0.0041 - mse: 0.0041 - mae: 0.0244 - accuracy: 0.9770 - val_loss: 0.0040 - val_mse: 0.0040 - val_mae: 0.0239 - val_accuracy: 0.9785
+
+Epoch 00002: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_2.h5
+Epoch 3/8
+3285/3285 - 4167s - loss: 0.0039 - mse: 0.0039 - mae: 0.0235 - accuracy: 0.9789 - val_loss: 0.0039 - val_mse: 0.0039 - val_mae: 0.0233 - val_accuracy: 0.9798
+
+Epoch 00003: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_3.h5
+Epoch 4/8
+3285/3285 - 4159s - loss: 0.0038 - mse: 0.0038 - mae: 0.0231 - accuracy: 0.9797 - val_loss: 0.0038 - val_mse: 0.0038 - val_mae: 0.0230 - val_accuracy: 0.9796
+
+Epoch 00004: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_4.h5
+Epoch 5/8
+3285/3285 - 4173s - loss: 0.0038 - mse: 0.0038 - mae: 0.0227 - accuracy: 0.9803 - val_loss: 0.0038 - val_mse: 0.0038 - val_mae: 0.0226 - val_accuracy: 0.9808
+
+Epoch 00005: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_5.h5
+Epoch 6/8
+3285/3285 - 4178s - loss: 0.0037 - mse: 0.0037 - mae: 0.0224 - accuracy: 0.9807 - val_loss: 0.0037 - val_mse: 0.0037 - val_mae: 0.0223 - val_accuracy: 0.9807
+
+Epoch 00006: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_6.h5
+Epoch 7/8
+3285/3285 - 4180s - loss: 0.0037 - mse: 0.0037 - mae: 0.0222 - accuracy: 0.9810 - val_loss: 0.0037 - val_mse: 0.0037 - val_mae: 0.0221 - val_accuracy: 0.9812
+
+Epoch 00007: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_7.h5
+Epoch 8/8
+3285/3285 - 4167s - loss: 0.0036 - mse: 0.0036 - mae: 0.0220 - accuracy: 0.9812 - val_loss: 0.0037 - val_mse: 0.0037 - val_mae: 0.0219 - val_accuracy: 0.9815
+
+Epoch 00008: saving model to /gpfswork/rech/psl/upu87pm/hybrid_climate_modelling/models/MLP/saved_models/ClimSim/model1_epoch_8.h5
