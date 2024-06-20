@@ -1,0 +1,2 @@
++ srun python3 -u prepro_to_npy_v1.py
++ date

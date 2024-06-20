@@ -1,0 +1,4 @@
++ srun python3 -u prepro_all_data.py
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+slurmstepd: error: *** STEP 138548.0 ON r2i0n20 CANCELLED AT 2024-06-17T16:47:31 ***
+slurmstepd: error: *** JOB 138548 ON r2i0n20 CANCELLED AT 2024-06-17T16:47:31 ***

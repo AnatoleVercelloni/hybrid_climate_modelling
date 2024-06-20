@@ -1,0 +1,147 @@
+train_samples =  22526 (1 sample = 1 snapshot = 1 file here)
+val_samples =  3755 (1 sample = 1 snapshot = 1 file here)
+test_samples =  4044 (1 sample = 1 snapshot = 1 file here)
+preprocessing data..
+running on  80  cpus
+preprocessing training data
+found  22526  nc files and put  312  of them in each npy file
+missing some file because  72  is not factor of  22526
+loading  624 files  (input + output):   1 / 72
+loading  took 308.2569408416748 s
+make mlo variales: ptend_t and ptend_q0001
+normalizatoin, scaling
+computing stats
+stack and save as npy
+input shape   (119808, 124)
+output shpae  (119808, 128)
+min_pbuf_SHFLX_normalized  :  -0.16316202348803624
+min_state_t_normalized  :  -0.7270206783099167
+min_pbuf_SOLIN  :  0.0
+min_state_t  :  139.066951627729
+min_state_q0001_normalized  :  -0.707926830312328
+min_state_ps_normalized  :  -0.8186446885785877
+min_pbuf_SOLIN_normalized  :  -0.2422158694840018
+min_pbuf_SHFLX  :  -119.89932678047288
+min_state_q0001  :  6.598110507698929e-09
+min_pbuf_LHFLX  :  -170.2375488110486
+min_state_ps  :  69601.75163287709
+min_pbuf_LHFLX_normalized  :  -0.22220950185397587
+min_pbuf_SHFLX_normalized  :  0.773356776163743
+min_state_t_normalized  :  0.5992033607374372
+max_pbuf_SHFLX  :  696.5057618541042
+min_state_q0001_normalized  :  0.9577254061612565
+min_state_ps_normalized  :  0.1807268985276178
+min_pbuf_SOLIN_normalized  :  0.7577841305159981
+max_state_q0001  :  0.022433367144877255
+max_state_t  :  427.70742924037677
+max_state_ps  :  105030.64555953926
+min_pbuf_LHFLX_normalized  :  0.7035841177220905
+max_pbuf_LHFLX  :  841.8622902356066
+max_pbuf_SOLIN  :  1405.8389921625753
+min_pbuf_SHFLX_normalized  :  2.428619365278142e-05
+mean_state_ps  :  98623.76446163356
+min_state_t_normalized  :  7.291076213438394e-05
+mean_state_t  :  247.15682752568185
+min_state_q0001_normalized  :  -0.01791281705142305
+min_state_ps_normalized  :  2.7995910640274265e-06
+min_pbuf_SOLIN_normalized  :  2.038831994021906e-06
+mean_pbuf_LHFLX  :  72.68069868951746
+mean_state_q0001  :  0.002561518126732471
+mean_pbuf_SHFLX  :  22.357436958990387
+min_pbuf_LHFLX_normalized  :  -5.965267644279072e-06
+mean_pbuf_SOLIN  :  340.51938011068665
+preprocessing val data
+found  3755  nc files and put  52  of them in each npy file
+missing some file because  72  is not factor of  3755
+loading  104 files  (input + output):   1 / 72
+loading  took 36.29867243766785 s
+make mlo variales: ptend_t and ptend_q0001
+normalizatoin, scaling
+computing stats
+stack and save as npy
+input shape   (19968, 124)
+output shpae  (19968, 128)
+min_pbuf_SHFLX_normalized  :  -0.1212024592270455
+min_state_t_normalized  :  -0.6899517625155269
+min_pbuf_SOLIN  :  0.0
+min_state_t  :  141.4281239499896
+min_state_q0001_normalized  :  -0.43575194557107544
+min_state_ps_normalized  :  -0.7699362426669608
+min_pbuf_SOLIN_normalized  :  -0.2422158694840018
+min_pbuf_SHFLX  :  -83.32130849370745
+min_state_q0001  :  5.072370472334113e-09
+min_pbuf_LHFLX  :  -140.94673903608395
+min_state_ps  :  71328.52312188101
+min_pbuf_LHFLX_normalized  :  -0.19541644868303418
+min_pbuf_SHFLX_normalized  :  0.7741056342486702
+min_state_t_normalized  :  0.5889575178742226
+max_pbuf_SHFLX  :  697.1585747516425
+min_state_q0001_normalized  :  0.8611410173283169
+min_state_ps_normalized  :  0.18036231215773948
+min_pbuf_SOLIN_normalized  :  0.7577823119790813
+max_state_q0001  :  0.022115026885714886
+max_state_t  :  430.6420922400551
+max_state_ps  :  105017.72054546824
+min_pbuf_LHFLX_normalized  :  0.6006205739958157
+max_pbuf_LHFLX  :  729.3000692076038
+max_pbuf_SOLIN  :  1405.836435592469
+min_pbuf_SHFLX_normalized  :  0.00011576257494530956
+mean_state_ps  :  98621.47761433874
+min_state_t_normalized  :  -0.0008185277154947076
+mean_state_t  :  247.06866854918346
+min_state_q0001_normalized  :  0.05112731030583892
+min_state_ps_normalized  :  -6.170736800833054e-05
+min_pbuf_SOLIN_normalized  :  -5.032455604671085e-06
+mean_pbuf_LHFLX  :  72.18963897189029
+mean_state_q0001  :  0.002567883079180031
+mean_pbuf_SHFLX  :  22.437180988907212
+min_pbuf_LHFLX_normalized  :  -0.00045515015620056234
+mean_pbuf_SOLIN  :  340.50943901885574
+preprocessing test data
+found  4044  nc files and put  56  of them in each npy file
+missing some file because  72  is not factor of  4044
+loading  112 files  (input + output):   1 / 72
+loading  took 36.58505654335022 s
+make mlo variales: ptend_t and ptend_q0001
+normalizatoin, scaling
+computing stats
+stack and save as npy
+input shape   (21504, 124)
+output shpae  (21504, 128)
+min_pbuf_SHFLX_normalized  :  -0.11951936117796655
+min_state_t_normalized  :  -0.733643404622188
+min_pbuf_SOLIN  :  0.0
+min_state_t  :  111.24204971294876
+min_state_q0001_normalized  :  -0.4336298304897991
+min_state_ps_normalized  :  -0.8146695890589034
+min_pbuf_SOLIN_normalized  :  -0.2422158694840018
+min_pbuf_SHFLX  :  -81.85407706978953
+min_state_q0001  :  1.60464170737379e-08
+min_pbuf_LHFLX  :  -116.54780515757847
+min_state_ps  :  69742.67356926975
+min_pbuf_LHFLX_normalized  :  -0.17309811956398624
+min_pbuf_SHFLX_normalized  :  0.7738991659986182
+min_state_t_normalized  :  0.9237198363837108
+max_pbuf_SHFLX  :  696.9785871955501
+min_state_q0001_normalized  :  0.8652166001156042
+min_state_ps_normalized  :  0.18027402390350108
+min_pbuf_SOLIN_normalized  :  0.7574352647112969
+max_state_q0001  :  0.022381612230188367
+max_state_t  :  1304.326247832182
+max_state_ps  :  105014.59062339047
+min_pbuf_LHFLX_normalized  :  0.7486546495116884
+max_pbuf_LHFLX  :  891.1344789885247
+max_pbuf_SOLIN  :  1405.348543011294
+min_pbuf_SHFLX_normalized  :  -0.00020165347429610157
+mean_state_ps  :  98627.60457212529
+min_state_t_normalized  :  0.0012275349333343635
+mean_state_t  :  247.20009336734154
+min_state_q0001_normalized  :  0.05755889344653894
+min_state_ps_normalized  :  0.00011112070672495553
+min_pbuf_SOLIN_normalized  :  -0.0005231115431332636
+mean_pbuf_LHFLX  :  73.3078989901473
+mean_state_q0001  :  0.0025906792142713323
+mean_pbuf_SHFLX  :  22.1604753019404
+min_pbuf_LHFLX_normalized  :  0.0005677508956408023
+mean_pbuf_SOLIN  :  339.78110323658404
+Tue Jun 18 04:33:33 PM CEST 2024

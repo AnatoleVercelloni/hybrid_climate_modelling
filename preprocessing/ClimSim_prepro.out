@@ -1,0 +1,5 @@
+n_samples =  210240 (1 sample = 1 snapshot = 1 file here)
+argument list ['prepro_all_data.py']
+found  35040  nc files from  105120  to  140160  and put  438  of them in each npy file for node  3
+preprocessing all data
+loading  876 files  (input + output):   1 / 80

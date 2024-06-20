@@ -1,0 +1,2 @@
++ srun python3 -u for_kaggle.py
++ date
